@@ -7,8 +7,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "apt"
-include_recipe "screen"
+%w{apt screen java}.each do |rcp| 
+  include_recipe(rcp)
+end
 
 package 'rsync'
 
@@ -75,7 +76,7 @@ remote_file "/opt/minecraft/craftbukkit_server.jar" do
 end
 
 service "minecraft" do
-  supports :restart => true, :status => true, :reload => true
+  supports :start => true, :restart => true, :status => true, :reload => true
   action [:enable, :start]
   subscribes :restart, resources(:template => "/etc/minecraft/init/config")
   subscribes :restart, resources(:remote_file => "/opt/minecraft/craftbukkit_server.jar")
