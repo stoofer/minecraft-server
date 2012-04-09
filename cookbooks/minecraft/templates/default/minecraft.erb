@@ -72,6 +72,7 @@ datepath() {
 }
 mc_start() {
 	cd $MCPATH
+	echo "cd $MCPATH && screen -dmS $SCREEN $INVOCATION"
 	as_user "cd $MCPATH && screen -dmS $SCREEN $INVOCATION"
 	#
 	# Waiting for the server to start
