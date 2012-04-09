@@ -2,7 +2,8 @@
 # vi: set ft=ruby :
 
 Vagrant::Config.run do |config|
-  config.vm.box = "ubuntu-lucid-64"
+  config.vm.box = 'ubuntu-lucid-64'
+  config.vm.box_url = 'http://files.vagrantup.com/lucid64.box'
   config.vm.forward_port 25565, 25565
 
   config.vm.provision :chef_solo do |chef|
