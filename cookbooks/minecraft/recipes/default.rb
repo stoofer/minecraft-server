@@ -27,6 +27,9 @@ end
  '/etc/minecraft',
  '/var/minecraft',
  '/var/minecraft/worldstorage',
+ '/var/minecraft/worldstorage/world',
+ '/var/minecraft/worldstorage/world_nether',
+ '/var/minecraft/worldstorage/world_the_end',
  '/var/minecraft/backups',
  '/var/minecraft/backups/worlds',
  '/var/minecraft/backups/server',
@@ -48,6 +51,46 @@ end
 
 link "/etc/init.d/minecraft" do
   to "/etc/minecraft/init/minecraft"
+end
+
+file '/var/minecraft/logs/server.log' do
+  owner "mcsvc"
+  group "minecraft"
+  action :create_if_missing
+end
+
+link '/opt/minecraft/server.log' do
+ to '/var/minecraft/logs/server.log'
+end
+
+%w{world world_nether world_the_end}.each do |world|
+  directory "/var/minecraft/worldstorage/#{world}" do
+    owner 'mcsvc'
+    group 'minecraft'
+  end
+
+  link "/opt/minecraft/#{world}" do
+    to  "/var/minecraft/worldstorage/#{world}"
+  end
+end
+
+['banned-ips.txt',
+ 'banned-players.txt',
+ 'bukkit.yml',
+ 'ops.txt',
+ 'permissions.yml',
+ 'server.properties',
+ 'white-list.txt'].each do |config_file|
+  cookbook_file "/etc/minecraft/#{config_file}" do
+    mode "0644"
+    owner 'mcsvc'
+    group 'minecraft'
+    action :create
+  end
+
+  link "/opt/minecraft/#{config_file}" do
+    to  "/etc/minecraft/#{config_file}"
+  end
 end
 
 template "/etc/minecraft/init/config" do
@@ -72,7 +115,7 @@ remote_file "/opt/minecraft/craftbukkit_server.jar" do
   mode "0644"
   owner "mcsvc"
   group "minecraft"
-  checksum "b877b022ea4d61c24f9296767b3cf656"
+  action :create_if_missing
 end
 
 service "minecraft" do
