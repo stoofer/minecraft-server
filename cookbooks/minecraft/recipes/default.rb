@@ -73,10 +73,7 @@ end
   end
 end
 
-[
- 'banned-players.txt',
- 'bukkit.yml',
- 'permissions.yml'].each do |config_file|
+['bukkit.yml','permissions.yml'].each do |config_file|
   cookbook_file "/etc/minecraft/#{config_file}" do
     mode "0644"
     owner node.minecraft.account.name    
@@ -90,6 +87,7 @@ end
 end
 
 ['banned-ips.txt',
+ 'banned-players.txt',
  'ops.txt',
  'white-list.txt',
  'server.properties'].each do |config_file|
