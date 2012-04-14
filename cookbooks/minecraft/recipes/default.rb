@@ -23,6 +23,7 @@ group node.minecraft.account.group do
 end
 
 ['/opt/minecraft',
+'/opt/minecraft/plugins',
  '/etc/minecraft',
  '/var/minecraft',
  '/var/minecraft/worldstorage',
