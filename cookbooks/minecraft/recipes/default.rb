@@ -73,7 +73,7 @@ end
   end
 end
 
-['banned-ips.txt',
+[
  'banned-players.txt',
  'bukkit.yml',
  'permissions.yml'].each do |config_file|
@@ -89,7 +89,7 @@ end
   end
 end
 
-[
+['banned-ips.txt',
  'ops.txt',
  'white-list.txt',
  'server.properties'].each do |config_file|
