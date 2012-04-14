@@ -13,14 +13,13 @@ end
 
 package 'rsync'
 
-user 'mcsvc' do
-  comment   'minecraft service'
+user node.minecraft.account.name do
+  comment 'minecraft service'
 end
 
- 
-group "minecraft" do
-  gid     999
-  members 'mcsvc'
+group node.minecraft.account.group do
+  gid 999
+  members node.minecraft.account.name
 end
 
 ['/opt/minecraft',
@@ -36,16 +35,16 @@ end
  '/var/minecraft/logs',
  '/etc/minecraft/init'].each do |dir|
   directory dir do
-    owner 'mcsvc'
-    group 'minecraft'
+    owner node.minecraft.account.name
+    group node.minecraft.account.group
   end
 end
 
 #is this really a template?
 template "/etc/minecraft/init/minecraft" do
   source "minecraft.erb"
-  owner "mcsvc"
-  group "minecraft"
+  owner node.minecraft.account.name
+  group node.minecraft.account.group
   mode "0755"
 end
 
@@ -54,8 +53,8 @@ link "/etc/init.d/minecraft" do
 end
 
 file '/var/minecraft/logs/server.log' do
-  owner "mcsvc"
-  group "minecraft"
+  owner node.minecraft.account.name
+  group node.minecraft.account.group
   action :create_if_missing
 end
 
@@ -65,8 +64,8 @@ end
 
 %w{world world_nether world_the_end}.each do |world|
   directory "/var/minecraft/worldstorage/#{world}" do
-    owner 'mcsvc'
-    group 'minecraft'
+    owner node.minecraft.account.name
+    group node.minecraft.account.group
   end
 
   link "/opt/minecraft/#{world}" do
@@ -80,8 +79,8 @@ end
  'permissions.yml'].each do |config_file|
   cookbook_file "/etc/minecraft/#{config_file}" do
     mode "0644"
-    owner 'mcsvc'
-    group 'minecraft'
+    owner node.minecraft.account.name    
+    group node.minecraft.account.group
     action :create
   end
 
@@ -97,8 +96,8 @@ end
   
   template "/etc/minecraft/#{config_file}" do
     mode "0644"
-    owner 'mcsvc'
-    group 'minecraft'
+    owner node.minecraft.account.name
+    group node.minecraft.account.group
     variables( :minecraft => node.minecraft )
     action :create
   end
@@ -111,10 +110,10 @@ end
 
 template "/etc/minecraft/init/config" do
   source "config.erb"
-  owner 'mcsvc'
-  group 'minecraft'
+  owner node.minecraft.account.name
+  group node.minecraft.account.group
   variables(
-            :service_user => 'mcsvc',
+            :service_user => node.minecraft.account.name,
             :minecraft_path => '/opt/minecraft',
             :initial_memory => '400M',
             :max_memory => '1400M',
@@ -129,8 +128,8 @@ end
 remote_file "/opt/minecraft/craftbukkit_server.jar" do
   source 'http://dl.bukkit.org/downloads/craftbukkit/get/01026_1.2.5-R1.0/craftbukkit.jar'
   mode "0644"
-  owner "mcsvc"
-  group "minecraft"
+  owner node.minecraft.account.name
+  group node.minecraft.account.group
   action :create_if_missing
 end
 
