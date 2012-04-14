@@ -111,10 +111,10 @@ template "/etc/minecraft/init/config" do
   owner node.minecraft.account.name
   group node.minecraft.account.group
   variables(
-            :service_user => node.minecraft.account.name,
+            :service_user => node['minecraft']['account']['name'],
             :minecraft_path => '/opt/minecraft',
-            :initial_memory => '400M',
-            :max_memory => '1400M',
+            :initial_memory => node['minecraft']['memory']['initial'],
+            :max_memory => node['minecraft']['memory']['max'],
             :backup_path => '/var/minecraft/backups/worlds',
             :log_path => '/var/minecraft/logs',
             :server_backup => '/var/minecraft/backups/server',
@@ -124,7 +124,7 @@ end
 
 # TODO - tokenise version
 remote_file "/opt/minecraft/craftbukkit_server.jar" do
-  source 'http://dl.bukkit.org/downloads/craftbukkit/get/01026_1.2.5-R1.0/craftbukkit.jar'
+  source node.minecraft.bukkit.path
   mode "0644"
   owner node.minecraft.account.name
   group node.minecraft.account.group
