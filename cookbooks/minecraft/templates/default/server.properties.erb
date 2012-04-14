@@ -11,7 +11,7 @@ level-seed=
 server-ip=
 max-build-height=256
 spawn-npcs=true
-white-list=true
+white-list=<%= @minecraft.whitelist_enabled %>
 spawn-animals=true
 online-mode=true
 pvp=true
@@ -21,4 +21,4 @@ max-players=20
 spawn-monsters=true
 generate-structures=true
 view-distance=10
-motd=Caborn Minecraft Server
+motd=<%= @minecraft['message'] %>

@@ -11,5 +11,21 @@ Vagrant::Config.run do |config|
     chef.roles_path = "../../roles"
     chef.data_bags_path = "../../data_bags"
     chef.add_role "minecraft-server"
+    chef.json.merge!(
+                     :minecraft => {
+                       :message => 'FruityCraft Minecraft Server',
+                       :ops => [
+                                'philloop',
+                                'insane_creepah',
+                                'stooferus'
+                               ],
+                       :whitelist => [
+                                      'stooferus',
+                                      'philloop',
+                                      'insane_creepah',
+                                      'Tobsy4inc',
+                                      'Ties100100',
+                                      'jamibo12'
+                                    ]})
   end
 end

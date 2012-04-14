@@ -79,7 +79,6 @@ end
  'bukkit.yml',
  'ops.txt',
  'permissions.yml',
- 'server.properties',
  'white-list.txt'].each do |config_file|
   cookbook_file "/etc/minecraft/#{config_file}" do
     mode "0644"
@@ -92,6 +91,22 @@ end
     to  "/etc/minecraft/#{config_file}"
   end
 end
+
+['server.properties'].each do |config_file|
+  
+  template "/etc/minecraft/#{config_file}" do
+    mode "0644"
+    owner 'mcsvc'
+    group 'minecraft'
+    variables( :minecraft => node.minecraft )
+    action :create
+  end
+ 
+  link "/opt/minecraft/#{config_file}" do
+    to  "/etc/minecraft/#{config_file}"
+  end
+end
+
 
 template "/etc/minecraft/init/config" do
   source "config.erb"
