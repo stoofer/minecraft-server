@@ -132,7 +132,7 @@ remote_file "/opt/minecraft/craftbukkit_server.jar" do
 end
 
 service "minecraft" do
-  supports :start => true, :restart => true, :status => true, :reload => true
+  supports :start => true, :restart => true, :status => true
   action [:enable, :start]
   subscribes :restart, resources(:template => "/etc/minecraft/init/config")
   subscribes :restart, resources(:remote_file => "/opt/minecraft/craftbukkit_server.jar")
