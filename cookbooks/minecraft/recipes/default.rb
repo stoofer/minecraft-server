@@ -77,8 +77,7 @@ end
 ['banned-ips.txt',
  'banned-players.txt',
  'bukkit.yml',
- 'permissions.yml',
- 'white-list.txt'].each do |config_file|
+ 'permissions.yml'].each do |config_file|
   cookbook_file "/etc/minecraft/#{config_file}" do
     mode "0644"
     owner 'mcsvc'
@@ -93,6 +92,7 @@ end
 
 [
  'ops.txt',
+ 'white-list.txt',
  'server.properties'].each do |config_file|
   
   template "/etc/minecraft/#{config_file}" do
