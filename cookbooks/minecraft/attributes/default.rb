@@ -15,3 +15,5 @@ default.minecraft.banned_players = []
 default.minecraft.whitelist_enabled = true
 default.minecraft.message = 'A Minecraft Server'
 default.minecraft.whitelist = []
+
+default.minecraft.plugins.permissions_bukkit.version = '1.6'
