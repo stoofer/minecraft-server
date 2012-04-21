@@ -12,6 +12,7 @@
 end
 
 package 'rsync'
+package 'tree'
 
 user node.minecraft.account.name do
   comment 'minecraft service'
