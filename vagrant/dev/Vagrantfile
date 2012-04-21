@@ -14,7 +14,7 @@ Vagrant::Config.run do |config|
     chef.add_role "minecraft-server"
     chef.json.merge!(
                      :minecraft => {
-                       :message => 'FruityCraft Minecraft Server',
+                       :message => 'FruityCraft Minecraft Server!',
                        :ops => [
                                 'philloop',
                                 'insane_creepah',
@@ -27,6 +27,12 @@ Vagrant::Config.run do |config|
                                       'Tobsy4inc',
                                       'Ties100100',
                                       'jamibo12'
-                                    ]})
+                                    ],
+                       :users => {
+                         'stooferus' => { 'groups' => ['admin']},
+                         'insane_creepah' => { 'groups' => ['user']}
+                       }
+                     })
+#['minecraft']['plugins']['permissions_bukkit']['users'],
   end
 end

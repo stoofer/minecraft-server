@@ -34,7 +34,8 @@ end
  '/var/minecraft/backups/worlds',
  '/var/minecraft/backups/server',
  '/var/minecraft/logs',
- '/etc/minecraft/init'].each do |dir|
+ '/etc/minecraft/init',
+ '/etc/minecraft/plugins'].each do |dir|
   directory dir do
     owner node.minecraft.account.name
     group node.minecraft.account.group
