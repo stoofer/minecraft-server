@@ -29,8 +29,8 @@ Vagrant::Config.run do |config|
                                       'jamibo12'
                                     ],
                        :users => {
-                         'stooferus' => { 'groups' => ['admin']},
-                         'insane_creepah' => { 'groups' => ['user']}
+                         'stooferus' => { 'groups' => ['Owner']},
+                         'insane_creepah' => { 'groups' => ['Admin']}
                        }
                      })
 #['minecraft']['plugins']['permissions_bukkit']['users'],

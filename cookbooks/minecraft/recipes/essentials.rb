@@ -4,6 +4,8 @@
 
 include_recipe 'minecraft::default'
 
+node['minecraft']['plugins']['permissions_bukkit']['groups']['Default']['essentials.spawn'] = true;
+
 cookbook_file "/opt/minecraft/plugins/Essentials.jar" do
   source "plugins/essentials/Essentials-#{node.minecraft.plugins.essentials.version}.jar"
   owner node.minecraft.account.name
