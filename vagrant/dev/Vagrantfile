@@ -11,7 +11,8 @@ Vagrant::Config.run do |config|
     chef.cookbooks_path = "../../cookbooks"
     chef.roles_path = "../../roles"
     chef.data_bags_path = "../../data_bags"
-    chef.add_role "minecraft-server"
+    chef.add_role "ec2-minecraft-server"
+=begin
     chef.json.merge!(
                      :minecraft => {
                        :message => 'FruityCraft Minecraft Server!',
@@ -30,9 +31,10 @@ Vagrant::Config.run do |config|
                                     ],
                        :users => {
                          'stooferus' => { 'groups' => ['Owner']},
-                         'insane_creepah' => { 'groups' => ['Admin']}
+                         'insane_creepah' => { 'groups' => ['Admin']},
+                         'philloop' => { 'groups' => ['Admin']}
                        }
                      })
-#['minecraft']['plugins']['permissions_bukkit']['users'],
+=end
   end
 end

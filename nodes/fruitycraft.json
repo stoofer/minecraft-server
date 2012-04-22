@@ -1,0 +1,1 @@
+{"run_list": ["role[ec2-minecraft-server]"]}
