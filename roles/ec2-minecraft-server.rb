@@ -4,6 +4,7 @@ run_list('role[minecraft-server]')
 
 default_attributes(
                    :minecraft => {
+                     :memory => { :max => '2400M'},
                      :message => 'FruityCraft Minecraft Server!',
                      :ops => [
                               'philloop',
@@ -21,10 +22,10 @@ default_attributes(
                                     'minecrafterzrule'
                                    ],
                      :users => {
-                       'stooferus' => { 'groups' => ['Owner']},
-                       'insane_creepah' => { 'groups' => ['Admin']},
-                       'philloop' => { 'groups' => ['Owner']},
-                       'jayx12' => { 'groups' => ['Moderator']},
-                       'minecrafterzrule' => { 'groups' => ['Builder']},
+                       'stooferus' => { 'groups' => ['owner']},
+                       'insane_creepah' => { 'groups' => ['crazy wolf']},
+                       'philloop' => { 'groups' => ['turtley awesome']},
+                       'jayx12' => { 'groups' => ['moderator']},
+                       'minecrafterzrule' => { 'groups' => ['builder']},
                      }
                    })           

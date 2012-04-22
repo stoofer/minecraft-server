@@ -1,7 +1,7 @@
 default.minecraft.plugins.permissions_bukkit.version = '1.6'
 
 default.minecraft.plugins.permissions_bukkit['groups'] = {
-  'Default' => { 
+  'default' => { 
     'permissions' => {
       'permissions.build' => false,
       #essentials
@@ -13,7 +13,7 @@ default.minecraft.plugins.permissions_bukkit['groups'] = {
       'essentials.help' => true,
     }
   },
-  'Builder' => {
+  'builder' => {
     'permissions' => {
       'permissions.build' => true,
 
@@ -61,12 +61,13 @@ default.minecraft.plugins.permissions_bukkit['groups'] = {
       'essentials.warp.list' => true,
       'essentials.worth' =>true
     },
-    :inheritance => ['Default']
+    :inheritance => ['default']
   },
 
-  'Moderator' => {
+  'moderator' => {
     :permissions => {
-      'essentials.ban' => true,
+	  'factions.kit.mod' => true,
+	  'essentials.ban' => true,
       'essentials.ban.notify' => true,
       'essentials.banip' => true,
       'essentials.broadcast' => true,
@@ -110,22 +111,72 @@ default.minecraft.plugins.permissions_bukkit['groups'] = {
       'essentials.whois' => true,
       'essentials.world' => true
     },
-    :inheritance => ['Builder' ]
+    :inheritance => ['builder' ]
+	},
+  'rolo of the polos' => {
+    :permissions => {
+	  'factions.kit.mod' => true,
+      'essentials.ban' => false,
+      'essentials.ban.notify' => false,
+      'essentials.banip' => false,
+      'essentials.broadcast' => true,
+      'essentials.clearinventory' => true,
+      'essentials.delwarp' => true,
+      'essentials.eco.loan' => true,
+      'essentials.ext' => true,
+      'essentials.getpos' => true,
+      'essentials.helpop.recieve' => true,
+      'essentials.home.others' => true,
+      'essentials.invsee' => true,
+      'essentials.jails' => true,
+      'essentials.jump' => true,
+      'essentials.kick' => true,
+      'essentials.kick.notify' => true,
+      'essentials.kill' => false,
+      'essentials.mute' => true,
+      'essentials.nick.others' => true,
+      'essentials.realname' => true,
+      'essentials.setwarp' => true,
+      'essentials.signs.create.*' => true,
+      'essentials.signs.break.*' => true,
+      'essentials.spawner' => true,
+      'essentials.thunder' => true,
+      'essentials.time' => true,
+      'essentials.time.set' => true,
+      'essentials.protect.alerts' => true,
+      'essentials.protect.admin' => true,
+      'essentials.protect.ownerinfo' => true,
+      'essentials.ptime'=> true,
+      'essentials.ptime.others' => true,
+      'essentials.togglejail' => true,
+      'essentials.top' => true,
+      'essentials.tp' => true,
+      'essentials.tphere' => true,
+      'essentials.tppos' => true,
+      'essentials.tptoggle' => true,
+      'essentials.unban' => true,
+      'essentials.unbanip' => true,
+      'essentials.weather' => true,
+      'essentials.whois' => true,
+      'essentials.world' => true
+    },
+    :inheritance => ['builder' ]
   },
-  'Admin' => {
+  'admin' => {
     'permissions' => {
-      'permissions.*' => true,
+	   'permissions.*' => true,
       # Since we use essentials.* permission here, we can still disable commands like this
       # This is only available for essentials permissions
+      'factions.kit.admin' => true,
       '-essentials.backup' => true,
       '-essentials.essentials' => true,
       '-essentials.setspawn' => true,
       '-essentials.reloadall' => true,
       'essentials.*' => true
     },
-    'inheritance' => ['Moderator']
+    'inheritance' => ['moderator']
   },
-  'Owner' => {
+  'owner' => {
     'permissions' => {
       # Double negation
       '-essentials.backup' => true,
@@ -133,14 +184,20 @@ default.minecraft.plugins.permissions_bukkit['groups'] = {
       '-essentials.setspawn' => true,
       '-essentials.reloadall' => true,
     },
-    'inheritance' => ['Admin']
-  }
+    'inheritance' => ['admin']
+  },
+  'turtley awesome' => { 'inheritance' => ['owner']
+  },
+  'crazy wolf' => { 'inheritance' => ['owner']
+  },
+  'co-owner' => { 'inheritance' => ['owner'] },
+  'derek' => {'inheritance' => ['default']}
 }
 
 default.minecraft.plugins.permissions_bukkit.debug = false
 
 default.minecraft.plugins.permissions_bukkit.messages = {
-  'build' => '&cYou do not have permission to build here.'
+  'build' => '&cYou cannot build in this area FOOL!!!'
 }
 
 
