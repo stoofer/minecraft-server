@@ -1,5 +1,4 @@
-# -*- coding: undecided -*-
-#
+# -*- coding: utf-8 -*-
 # Cookbook Name:: minecraft
 # Recipe:: factions
 
@@ -35,6 +34,7 @@ end
 end
 
 =begin
+TODO - enable economy
 TODO - permissions:
 
 Permission Nodes -
