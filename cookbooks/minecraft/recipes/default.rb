@@ -108,11 +108,7 @@ end
   end
 end
 
-['banned-ips.txt',
- 'banned-players.txt',
- 'ops.txt',
- 'white-list.txt',
- 'server.properties'].each do |config_file|
+['server.properties'].each do |config_file|
   
   template "/etc/minecraft/#{config_file}" do
     mode "0644"
@@ -127,6 +123,23 @@ end
   end
 end
 
+['banned-ips.txt',
+ 'banned-players.txt',
+ 'ops.txt',
+ 'white-list.txt'].each do |config_file|
+  
+  template "/etc/minecraft/#{config_file}" do
+    mode "0644"
+    owner node.minecraft.account.name
+    group node.minecraft.account.group
+    variables( :minecraft => node.minecraft )
+    action :create_if_missing
+  end
+ 
+  link "/opt/minecraft/#{config_file}" do
+    to  "/etc/minecraft/#{config_file}"
+  end
+end
 
 template "/etc/minecraft/init/config" do
   source "config.erb"
