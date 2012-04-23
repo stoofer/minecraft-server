@@ -30,6 +30,7 @@ template "/etc/minecraft/plugins/PermissionsBukkit/config.yml" do
             :messages => node['minecraft']['plugins']['permissions_bukkit']['messages'],
             :debug => node['minecraft']['plugins']['permissions_bukkit']['debug'])
 
+  action :create_if_missing
   notifies :restart, "service[minecraft]"
 end
 
