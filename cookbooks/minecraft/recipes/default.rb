@@ -23,6 +23,25 @@ group node.minecraft.account.group do
   members node.minecraft.account.name
 end
 
+if( node.attribute?("ec2") )
+
+  [ '/var/minecraft'].each do |dir|
+    directory dir do
+      owner node.minecraft.account.name
+      group node.minecraft.account.group
+    end
+  end
+
+  mount "/var/minecraft" do
+    device "/dev/xvdb"
+    fstype "ext3"
+    options "rw"
+    action [:enable, :mount]
+  end
+  
+end
+
+
 ['/opt/minecraft',
 '/opt/minecraft/plugins',
  '/etc/minecraft',
