@@ -128,7 +128,7 @@ end
  'ops.txt',
  'white-list.txt'].each do |config_file|
   
-  template "/etc/minecraft/#{config_file}" do
+  template "/var/minecraft/#{config_file}" do
     mode "0644"
     owner node.minecraft.account.name
     group node.minecraft.account.group
@@ -137,7 +137,7 @@ end
   end
  
   link "/opt/minecraft/#{config_file}" do
-    to  "/etc/minecraft/#{config_file}"
+    to  "/var/minecraft/#{config_file}"
   end
 end
 

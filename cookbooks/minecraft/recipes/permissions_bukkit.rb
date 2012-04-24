@@ -4,12 +4,13 @@
 
 include_recipe 'minecraft::default'
 
-['/opt/minecraft/plugins/PermissionsBukkit',
- '/etc/minecraft/plugins/PermissionsBukkit'].each do |dir|
-  directory dir do
-    owner node.minecraft.account.name
-    group node.minecraft.account.group
-  end
+directory '/var/minecraft/plugins/permissions_bukkit' do
+  owner node.minecraft.account.name
+  group node.minecraft.account.group
+end
+
+link '/opt/minecraft/plugins/PermissionsBukkit' do
+  to '/var/minecraft/plugins/permissions_bukkit'
 end
 
 cookbook_file "/opt/minecraft/plugins/PermissionsBukkit-#{node.minecraft.plugins.permissions_bukkit.version}.jar" do
@@ -20,7 +21,7 @@ cookbook_file "/opt/minecraft/plugins/PermissionsBukkit-#{node.minecraft.plugins
   notifies :restart, "service[minecraft]"
 end
 
-template "/etc/minecraft/plugins/PermissionsBukkit/config.yml" do
+template "/var/minecraft/plugins/permissions_bukkit/config.yml" do
   source "plugins/PermissionsBukkit/config.yml.erb"
   owner node.minecraft.account.name
   group node.minecraft.account.group
@@ -34,7 +35,4 @@ template "/etc/minecraft/plugins/PermissionsBukkit/config.yml" do
   notifies :restart, "service[minecraft]"
 end
 
-link '/opt/minecraft/plugins/PermissionsBukkit/config.yml' do
-  to '/etc/minecraft/plugins/PermissionsBukkit/config.yml'
-end
 

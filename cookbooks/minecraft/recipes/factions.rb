@@ -4,6 +4,16 @@
 
 include_recipe 'minecraft::default'
 
+
+directory '/var/minecraft/plugins/factions' do
+  owner node.minecraft.account.name
+  group node.minecraft.account.group
+end
+
+link '/opt/minecraft/plugins/Factions' do
+  to '/var/minecraft/plugins/factions'
+end
+
 cookbook_file "/opt/minecraft/plugins/Factions.jar" do
   source "plugins/factions/factions-#{node.minecraft.plugins.factions.version}.jar"
   owner node.minecraft.account.name
@@ -12,17 +22,8 @@ cookbook_file "/opt/minecraft/plugins/Factions.jar" do
   notifies :restart, "service[minecraft]"
 end
 
-directory '/etc/minecraft/plugins/factions' do
-  owner node.minecraft.account.name
-  group node.minecraft.account.group
-end
-
-link '/opt/minecraft/plugins/Factions' do
-  to '/etc/minecraft/plugins/factions'
-end
-
 %w{board conf tags}.each do |file|
-  cookbook_file "/etc/minecraft/plugins/factions/#{file}.json" do
+  cookbook_file "/var/minecraft/plugins/factions/#{file}.json" do
     source "plugins/factions/#{file}.json"
     
     owner node.minecraft.account.name
