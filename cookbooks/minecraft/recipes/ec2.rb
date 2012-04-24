@@ -17,19 +17,29 @@ Gem.clear_paths
 include_recipe "aws"
 aws = node['aws']
 
-aws_ebs_volume 'ebs_var_minecraft' do
-  aws_access_key aws['aws_access_key_id']
-  aws_secret_access_key aws['aws_secret_access_key']
-  size 2
-  device "/dev/sdb"
-  action [ :create, :attach ]
-end
+if(aws['mc_volume_id'])
+  aws_ebs_volume 'ebs_var_minecraft' do
+    aws_access_key aws['aws_access_key_id']
+    aws_secret_access_key aws['aws_secret_access_key']
+    volume_id aws['mc_volume_id']
+    device "/dev/sdb"
+    action [ :attach ]
+  end
 
-execute "format_new_volume" do
-  command "mkfs.ext3 /dev/xvdb"
-  creates "/var/minecraft"
+else
+  aws_ebs_volume 'ebs_var_minecraft' do
+    aws_access_key aws['aws_access_key_id']
+    aws_secret_access_key aws['aws_secret_access_key']
+    size 2
+    device "/dev/sdb"
+    action [ :create, :attach ]
+  end
+  
+  execute "format_new_volume" do
+    command "mkfs.ext3 /dev/xvdb"
+    creates "/var/minecraft/lost+found"
+  end
 end
-
 
 directory '/var/minecraft' do
   owner node.minecraft.account.name
