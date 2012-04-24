@@ -184,3 +184,12 @@ cron "minecraft-flush" do
   minute "*/30"
   command '/etc/init.d/minecraft to-disk'
 end
+
+#Lock down sshd
+service 'ssh' do
+  supports :start => true, :restart => true
+  action :nothing
+end
+cookbook_file '/etc/ssh/ssh_config' do
+  notifies :restart, resources(:service => 'ssh')
+end
