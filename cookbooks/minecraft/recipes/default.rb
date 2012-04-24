@@ -46,6 +46,7 @@ end
 '/opt/minecraft/plugins',
  '/etc/minecraft',
  '/var/minecraft',
+ '/var/minecraft/plugins',
  '/var/minecraft/worldstorage',
  '/var/minecraft/worldstorage/world',
  '/var/minecraft/worldstorage/world_nether',

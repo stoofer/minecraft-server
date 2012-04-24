@@ -27,38 +27,6 @@
 # building, digging, or interacting with a block. Use '&' characters to
 # signify color codes.
 
-users:
-<% @users.each do |name,user| %>
-    <%= name %>:
-        permissions:
-<% 	(user['permissions'] || {}).each do |k,v| %>
-            <%= k %>: <%= v %>
-<%      end %>
-        groups:
-<%      (user['groups'] || []).each do |group| %>
-        - <%= group %>
-<%      end %>
-<% end %>
-
-groups:
-<% @groups.each do |name,group| %>
-    <%= name %>:
-        permissions:
-<% 	(group['permissions'] || {}).each do |k,v| %>
-            <%= k %>: <%= v %>
-<%      end %>
-        inheritance:
-<%      (group['inheritance'] || []).each do |group| %>
-        - <%= group %>
-<%      end %>
-<% end %>
-
-messages:
-<% @messages.each do |k,v| %>
-    <%= k %>: <%= v %>
-<% end %>
-
-debug: <%= @debug %>
 
 plugins:
     permissions: '1.6'
