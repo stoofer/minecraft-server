@@ -7,12 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-%w{apt screen java}.each do |rcp| 
-  include_recipe(rcp)
-end
-
-package 'rsync'
-package 'tree'
+include_recipe 'apt'
 
 user node.minecraft.account.name do
   comment 'minecraft service'
@@ -24,22 +19,15 @@ group node.minecraft.account.group do
 end
 
 if( node.attribute?("ec2") )
-
-  [ '/var/minecraft'].each do |dir|
-    directory dir do
-      owner node.minecraft.account.name
-      group node.minecraft.account.group
-    end
-  end
-
-  mount "/var/minecraft" do
-    device "/dev/xvdb"
-    fstype "ext3"
-    options "rw"
-    action [:enable, :mount]
-  end
-  
+  include_recipe("minecraft::ec2")
 end
+
+%w{screen java}.each do |rcp| 
+  include_recipe(rcp)
+end
+
+package 'rsync'
+package 'tree'
 
 
 ['/opt/minecraft',
