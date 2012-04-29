@@ -13,7 +13,7 @@ end
 
 
 action :create do
-  ruby_block "update_data" do
+  ruby_block "create group" do
     block do
       PermissionsCache.groups[new_resource.name] = {'permissions' => new_resource.permissions, 'inheritance' => new_resource.inheritance}
       Chef::Log.info "Created new group #{new_resource.name}"
@@ -23,17 +23,13 @@ action :create do
 end
 
 action :create_if_missing do
-  ruby_block "create_new" do
+  ruby_block "ceate group if missing" do
     block do
       PermissionsCache.groups[new_resource.name] = {'permissions' => new_resource.permissions, 'inheritance' => new_resource.inheritance}
       Chef::Log.info "Created new group #{new_resource.name}"
     end
 
-    not_if do
-      current_resource &&
-        current_resource.permissions == new_resource.permissions &&
-        current_resource.inheritance == new_resource.inheritance
-    end
+    not_if { current_resource }
 
     notifies :create, resources(:ruby_block => 'update_permissions_file')
   end

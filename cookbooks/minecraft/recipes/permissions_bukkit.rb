@@ -25,6 +25,7 @@ template "/var/minecraft/plugins/permissions_bukkit/config.yml" do
   source "plugins/PermissionsBukkit/config.yml.erb"
   owner node.minecraft.account.name
   group node.minecraft.account.group
+  mode "0644"
   action :create_if_missing
   notifies :restart, "service[minecraft]"
 end
@@ -57,9 +58,16 @@ end
 
 node['minecraft']['plugins']['permissions_bukkit']['groups'].each do |name,group|
   minecraft_group name do
-    permissions (group[:permissions] || Mash.new).to_hash
+    permissions {}
     inheritance group[:inheritance]
     action :create_if_missing
+  end
+
+  (group[:permissions] || {}).each do |key,allowed|
+    minecraft_permission "group:#{name}:#{key}" do
+      allow allowed
+      action :create_if_missing
+    end
   end
 end
 

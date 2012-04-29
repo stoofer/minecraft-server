@@ -9,11 +9,12 @@ Attributes
 
 Usage
 =====
-
+ami-8f013afb
+ami-8d5069f9 - clean ubuntu
 # Create a new instance with a blank ubuntu AMI
 knife ec2 server create \
   --groups=minecraft \
-  --image=ami-8d5069f9 --flavor=t1.micro \
+  --image=ami-8f013afb --flavor=t1.micro \
   --ssh-user=ubuntu \
   --ssh-key=knife --identity-file=~/.ssh/knife.pem
 
