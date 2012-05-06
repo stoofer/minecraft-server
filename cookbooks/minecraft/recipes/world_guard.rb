@@ -43,7 +43,7 @@ end
       group node.minecraft.account.group
       notifies :restart, "service[minecraft]"
       mode "0644"
-      action :create_if_missing
+      action :create
     end
   end
 end
@@ -58,9 +58,10 @@ group_permissions :default => {
 :builder => {
 },
 :moderator => {
+  'worldguard.bypass.lava' => true
 },
 :admin => {
- 
+ 'worldguard.bypass.*' => true
 },
 :owner => {
   'worldguard.*' => true

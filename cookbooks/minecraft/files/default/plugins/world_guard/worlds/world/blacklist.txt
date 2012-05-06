@@ -1,14 +1,10 @@
 # Deny lava buckets
 [lavabucket]
-ignore-groups=admins,mods
-on-use=deny,tell
-
-# Deny some ore
-[goldore,ironore]
-ignore-groups=admins
-on-break=deny,tell,notify
-
+ignore-perms=worldguard.bypass.lava 
+on-use=deny,notify,tell
+comment=NO LAVA BUCKETS
 # No TNT!
 [tnt]
-ignore-groups=admins
+ignore-perms=worldguard.bypass.tnt
 on-place=deny,notify,kick
+comment=place tnt ban
