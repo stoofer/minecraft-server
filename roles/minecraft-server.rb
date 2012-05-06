@@ -8,5 +8,6 @@ run_list(
          'recipe[minecraft::essentials_spawn]',
          'recipe[minecraft::factions]',
          'recipe[minecraft::mob_disguise]',
-         'recipe[minecraft::world_edit]'
+         'recipe[minecraft::world_edit]',
+         'recipe[minecraft::world_guard]'
          )

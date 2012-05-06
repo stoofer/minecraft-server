@@ -1,0 +1,14 @@
+# Deny lava buckets
+[lavabucket]
+ignore-groups=admins,mods
+on-use=deny,tell
+
+# Deny some ore
+[goldore,ironore]
+ignore-groups=admins
+on-break=deny,tell,notify
+
+# No TNT!
+[tnt]
+ignore-groups=admins
+on-place=deny,notify,kick
