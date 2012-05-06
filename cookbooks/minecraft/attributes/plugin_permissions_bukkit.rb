@@ -15,17 +15,16 @@ default.minecraft.plugins.permissions_bukkit['groups'] = {
 
   'moderator' => {
     :permissions => {
-	  'factions.kit.mod' => true,
+
     },
     :inheritance => ['builder' ]
-	},
+  },
   'rolo of the polos' => {
     :inheritance => ['moderator' ]
   },
   'admin' => {
     :permissions => {
       'permissions.*' => true,
-      'factions.kit.admin' => true,
     },
     'inheritance' => ['moderator']
   },

@@ -20,4 +20,25 @@ cookbook_file "/opt/minecraft/plugins/MobDisguise.jar" do
   notifies :restart, "service[minecraft]"
 end
 
+=begin
+mobdisguise.* ;Gives a player the ability to transform into all mobs
+mobdisguise.mob.[mobtype] ; Replace [mobtype] with the mobtype players can turn into
+mobdisguise.player ; Lets a player turn into other players
+=end
+
+
+group_permissions :default => {
+},
+:builder => {
+
+},
+:moderator => {
+
+},
+:admin => {
+  'mobdisguise.*' => true
+},
+:owner => {
+
+}
 

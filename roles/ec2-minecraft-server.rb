@@ -4,6 +4,7 @@ run_list('role[minecraft-server]')
 
 default_attributes(
                    :minecraft => {
+                     :whitelist_enabled => false,
                      :memory => { :max => '2400M'},
                      :message => 'FruityCraft Minecraft Server!',
                      :ops => [

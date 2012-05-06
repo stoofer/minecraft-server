@@ -34,6 +34,21 @@ end
 
 end
 
+group_permissions :default => {
+},
+:builder => {
+  'factions.kit.halfplayer' => true
+},
+:moderator => {
+  'factions.kit.mod' => true,
+},
+:admin => {
+  'factions.kit.admin' => true
+},
+:owner => {
+  'factions.*' => true
+}
+
 =begin
 TODO - enable economy
 TODO - permissions:
