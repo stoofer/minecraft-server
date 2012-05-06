@@ -27,10 +27,10 @@ class PermissionsCache
 
   def PermissionsCache.permission(resource)
     _, type, name, key = [*/(group|user):(.*):(.*)/.match(resource.name)]
-    return nil unless @@cache["#{type}s"][name]['permissions']
-    return nil unless @@cache["#{type}s"][name]['permissions'][key] == nil
-
-    return {:allow  => @@cache["#{type}s"][name][key]}
+    allowed= @@cache["#{type}s"][name] &&
+      @@cache["#{type}s"][name]['permissions'] &&
+      @@cache["#{type}s"][name]['permissions'][key]
+    return allowed.nil? ? allowed: {:allow  => allowed }
   end
 
   def PermissionsCache.add_permission!(permission)
@@ -40,3 +40,18 @@ class PermissionsCache
     @@cache["#{type}s"][name]['permissions'] = perms.merge(key => permission.allow)
   end
 end
+
+module Permissions
+  def group_permissions(name_permissions)
+    name_permissions.each do |group_name, permissions|
+      permissions.each do |permission, allowed|
+        Chef::Log.info ">>>group:#{group_name}:#{permission}<<<<"
+        minecraft_permission "group:#{group_name}:#{permission}" do
+          allow allowed
+          action :create_if_missing
+        end
+      end
+    end
+  end
+end
+

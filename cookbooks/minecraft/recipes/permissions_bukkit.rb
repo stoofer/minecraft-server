@@ -49,10 +49,19 @@ ruby_block "update_permissions_file" do
   action :nothing
 end
 
+
+#TODO - this is yucky code
 node['minecraft']['users'].each do |name,user|
   minecraft_player name do
     groups user[:groups]
     action :create_if_missing
+  end
+
+  (user[:permissions] || {}).each do |key,allowed|
+    minecraft_permission "user:#{name}:#{key}" do
+      allow allowed
+      action :create_if_missing
+    end
   end
 end
 
