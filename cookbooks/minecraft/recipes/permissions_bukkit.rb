@@ -7,6 +7,7 @@ include_recipe 'minecraft::default'
 directory '/var/minecraft/plugins/permissions_bukkit' do
   owner node.minecraft.account.name
   group node.minecraft.account.group
+  mode "0755"
 end
 
 link '/opt/minecraft/plugins/PermissionsBukkit' do

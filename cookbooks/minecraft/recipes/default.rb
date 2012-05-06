@@ -48,6 +48,7 @@ package 'tree'
   directory dir do
     owner node.minecraft.account.name
     group node.minecraft.account.group
+    mode "0755"
   end
 end
 

@@ -5,6 +5,8 @@ run_list(
          'recipe[minecraft::permissions_bukkit]',
          'recipe[minecraft::vault]',
          'recipe[minecraft::essentials]',
+         'recipe[minecraft::essentials_spawn]',
          'recipe[minecraft::factions]',
-         'recipe[minecraft::mob_disguise]'
+         'recipe[minecraft::mob_disguise]',
+         'recipe[minecraft::world_edit]'
          )
