@@ -46,7 +46,7 @@ ruby_block "update_permissions_file" do
       f.puts PermissionsCache.yaml
     end
   end
-  notifies :restart, resources(:service => 'minecraft')
+  notifies :restart, "service[minecraft]"
   action :nothing
 end
 
