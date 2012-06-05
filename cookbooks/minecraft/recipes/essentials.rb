@@ -28,7 +28,7 @@ end
  'upgrades-done.yml'].each do |file|
   cookbook_file "/var/minecraft/plugins/essentials/#{file}" do
     source "plugins/essentials/#{file}"
-    
+
     owner node.minecraft.account.name
     group node.minecraft.account.group
     action :create_if_missing
@@ -42,11 +42,11 @@ class Chef::Recipe
 end
 
 group_permissions :default => {
-  'essentials.spawn' => true, 
-  'essentials.rules' => true, 
+  'essentials.spawn' => true,
+  'essentials.rules' => true,
   'essentials.motd' => true,
-  'essentials.list' => true, 
-  'essentials.helpop' => true, 
+  'essentials.list' => true,
+  'essentials.helpop' => true,
   'essentials.help' => true
 },
 :builder => {
@@ -71,7 +71,7 @@ group_permissions :default => {
   'essentials.msg' => true,
   'essentials.nick' => true,
   'essentials.pay' => true,
-  'essentials.ping' => true,            
+  'essentials.ping' => true,
   'essentials.powertool' => true,
   'essentials.protect' => true,
   'essentials.sethome' => true,
@@ -116,7 +116,6 @@ group_permissions :default => {
   'essentials.nick.others' => true,
   'essentials.realname' => true,
   'essentials.setwarp' => true,
-  'essentials.signs.create.*' => true,
   'essentials.signs.break.*' => true,
   'essentials.spawner' => true,
   'essentials.thunder' => true,
@@ -152,4 +151,3 @@ group_permissions :default => {
   '-essentials.setspawn' => true,
   '-essentials.reloadall' => true,
 }
-

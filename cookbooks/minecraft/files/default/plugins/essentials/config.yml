@@ -189,7 +189,7 @@ kits:
     delay: 10
     items:
       - 272 1
-      - 273 1 
+      - 273 1
       - 274 1
       - 275 1
 
@@ -200,22 +200,22 @@ kits:
 # We recommend not enabling chest protection signs if you don't intend to use them, (or are using LWC/Lockette).
 
 enabledSigns:
-  #- color
-  #- balance
-  #- buy  
-  #- sell
-  #- trade
-  #- free
-  #- disposal
-  #- warp
-  #- kit
-  #- mail
-  #- enchant
+  - color
+  - balance
+  - buy
+  - sell
+  - trade
+  - free
+  - disposal
+  - warp
+  - kit
+  - mail
+  - enchant
   #- gamemode
-  #- heal
+  - heal
   #- spawnmob
-  #- time
-  #- weather
+  - time
+  - weather
   #- protection
 
 # Backup runs a command while saving is disabled
@@ -313,7 +313,7 @@ update-bed-at-daytime: true
 # Players need essentials.sethome.multiple before they can have more than 1 home, default to 'default' below.
 # Define different amounts of multiple homes for different permissions, e.g. essentials.sethome.multiple.vip
 # People with essentials.sethome.multiple.unlimited are not limited by these numbers.
-sethome-multiple:  
+sethome-multiple:
   default: 3
   # essentials.sethome.multiple.vip
   vip: 5
@@ -390,7 +390,7 @@ chat:
   # Chat formatting can be done in two ways, you can either define a standard format for all chat
   # Or you can give a group specific chat format, to give some extra variation.
   # If set to the default chat format which "should" be compatible with ichat.
-  # For more information of chat formatting, check out the wiki: http://ess.khhq.net/wiki/Chat_Formatting  
+  # For more information of chat formatting, check out the wiki: http://ess.khhq.net/wiki/Chat_Formatting
 
   format: '<{DISPLAYNAME}> {MESSAGE}'
   #format: '&7[{GROUP}]&f {DISPLAYNAME}&7:&f {MESSAGE}'
@@ -427,7 +427,7 @@ protect:
   alert:
     on-placement: 10,11,46,327
     on-use: 327
-    on-break: 
+    on-break:
 
   blacklist:
 
@@ -485,7 +485,7 @@ protect:
       ender_dragon: false
       pig: false
       sheep: false
-      cow: false      
+      cow: false
       chicken: false
       squid: false
       wolf: false
@@ -581,7 +581,7 @@ newbies:
   # When we spawn for the first time, which spawnpoint do we use?
   # Set to "none" if you want to use the spawn point of the world.
   spawnpoint: newbies
-  
+
   # Do we want to give users anything on first join? Set to '' to disable
   # This kit will be given reguardless of cost, and permissions.
   #kit: ''
